@@ -99,8 +99,8 @@
           .style({
             display: 'block',
             width: x.rangeBand()+'px',
-            left: (x(d.key) + x.rangeBand() - 1)+'px',
-            bottom: (height - y(d.values[v])+margin.top+5)+'px'
+            left: (x(d.key) + margin.left)+'px',
+            bottom: (height + margin.bottom - y(d.values[v]) + 5)+'px'
           });
       })
       .on('mouseout', function(d) {
