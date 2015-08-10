@@ -3,9 +3,15 @@
   margin: 0
 body
   font-family: Helvetica, Arial, sans-serif
-main
+#bars, #scatter
   position: relative
-.bar
+  margin-top: 1em
+  h2
+    font-size: 1em
+    line-height: 1em
+    position: absolute
+    bottom: 100%
+.bar, .dot
   fill: #7ad
   shape-rendering: crispEdges
   &.hovered
@@ -16,7 +22,7 @@ main
     stroke: #222
   text
     font-size: .7em
-#tooltip
+.tooltip
   display: none
   text-align: center
   background-color: #000

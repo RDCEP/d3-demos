@@ -5,13 +5,19 @@
 body {
   font-family: Helvetica, Arial, sans-serif; }
 
-main {
-  position: relative; }
+#bars, #scatter {
+  position: relative;
+  margin-top: 1em; }
+  #bars h2, #scatter h2 {
+    font-size: 1em;
+    line-height: 1em;
+    position: absolute;
+    bottom: 100%; }
 
-.bar {
+.bar, .dot {
   fill: #77aadd;
   shape-rendering: crispEdges; }
-  .bar.hovered {
+  .bar.hovered, .dot.hovered {
     fill: #6699cc; }
 
 .axis line, .axis path {
@@ -20,7 +26,7 @@ main {
 .axis text {
   font-size: 0.7em; }
 
-#tooltip {
+.tooltip {
   display: none;
   text-align: center;
   background-color: black;
