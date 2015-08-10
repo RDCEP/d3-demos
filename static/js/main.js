@@ -1,6 +1,5 @@
 (function() {
 
-  // Better margins so we can see the axis text and tooltip
   var margin = {top: 30, right: 10, bottom: 30, left:30}
     , w = 600
     , h = 400
@@ -26,7 +25,6 @@
       .attr('transform', 'translate(0,' + height + ')')
     , y_axis_layer = svg.append('g')
       .attr('class', 'y axis')
-    // Create a tooltip object
     , tooltip = d3.select('#tooltip')
     , datetime_format = d3.time.format('%-m/%d/%Y%H:%M')
     , data_by_area
@@ -90,11 +88,8 @@
       .attr('y', function(d) { return y(d.values[v]); })
       .attr('height', function(d) { return height - y(d.values[v]); })
       .attr('width', x.rangeBand())
-      // Add hover tooltip
       .on('mouseover', function(d) {
-        // Add .hovered class to bar for CSS styles
         d3.select(this).classed('hovered', true);
-        // Change tooltip text and styles
         tooltip.text(d.values[v])
           .style({
             display: 'block',
@@ -104,7 +99,6 @@
           });
       })
       .on('mouseout', function(d) {
-        // Remove .hovered on bar and hide tooltip
         d3.select(this).classed('hovered', false);
         tooltip.style({
             display: 'none'
