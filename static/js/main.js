@@ -13,6 +13,20 @@
     return text.replace(/(.)([A-Z])/g, '$1 $2');
   }
 
+  function trend(data, x, y) {
+    var reduce_sum = function(a, b) { return a + b; }
+      , n = data.length
+      , xys = d3.sum(data.map(function(d) { return d.values[x] * d.values[y]; }))
+      , xs = d3.sum(data.map(function(d) { return d.values[x]; }))
+      , xxs = d3.sum(data.map(function(d) { return d.values[x] ^ 2; }))
+      , ys = d3.sum(data.map(function(d) { return d.values[y]; }))
+      , m = (n * xys - xs * ys) / (n * xxs - xs * xs)
+      , b = (ys - m * xs) / n
+    ;
+    console.log(m, b);
+    return function(x) { return (m * x + b); };
+  }
+
   function Bars(data, data_by_area) {
 
     var x = d3.scale.ordinal()
@@ -122,8 +136,9 @@
         .attr('class', 'y axis')
       ;
 
-    var a = 'ForSale';
-    var b = 'ForRent';
+    var a = 'ForSale'
+      , b = 'ForRent'
+      , _t = trend(data_by_area, a, b);
 
     x.domain([0, d3.max(data_by_area, function (d) {
       return d.values[a];
@@ -131,6 +146,10 @@
     y.domain([0, d3.max(data_by_area, function (d) {
       return d.values[b];
     })]);
+
+    svg.append('g').append('path')
+      .attr('d', 'M ' + x.range()[0] + ' ' + y(_t(x.domain()[0])) + ' L ' + x.range()[1] + ' ' + y(_t(x.domain()[1])))
+      .attr('class', 'trend');
 
     svg.selectAll('.dot')
       .data(data_by_area)
@@ -212,7 +231,6 @@
 
     Bars(data, data_by_area);
     Scatter(data, data_by_area);
-
 
   });
 
