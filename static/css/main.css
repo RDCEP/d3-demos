@@ -2,12 +2,30 @@
   padding: 0;
   margin: 0; }
 
+body {
+  font-family: Helvetica, Arial, sans-serif; }
+
+main {
+  position: relative; }
+
 .bar {
-  fill: #77aadd; }
+  fill: #77aadd;
+  shape-rendering: crispEdges; }
+  .bar.hovered {
+    fill: #6699cc; }
 
 .axis line, .axis path {
   fill: none;
   stroke: #222222; }
 .axis text {
-  font-size: 0.7em;
-  font-family: Helvetica, Arial, sans-serif; }
+  font-size: 0.7em; }
+
+#tooltip {
+  display: none;
+  text-align: center;
+  background-color: black;
+  padding: 0.2em 0;
+  margin: 0 0 0.2em 0;
+  color: white;
+  position: absolute;
+  font-size: 0.7em; }
